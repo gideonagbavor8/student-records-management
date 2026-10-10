@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Records | Volta Valley College</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Volta Valley College home">
+      <span class="brand-mark" aria-hidden="true">V</span>
+      <span>Volta Valley College<small>Student Information System</small></span>
+    </a>
+    <span class="environment-label"><span class="status-dot"></span> Academic records</span>
+  </header>
+
+  <main class="layout">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">REGISTRAR'S OFFICE <span>•</span> 2026 ACADEMIC YEAR</p>
+        <h1>Student records</h1>
+        <p class="welcome-copy">Manage student information and course registrations in one place.</p>
+      </div>
+      <div class="welcome-icon" aria-hidden="true">✳</div>
+    </section>
+
+    <section class="summary-grid" aria-label="Record summary">
+      <article class="summary-card">
+        <span class="summary-icon students-icon" aria-hidden="true">◎</span>
+        <div><p>Total students</p><strong id="student-count">—</strong></div>
+        <span class="summary-note">enrolled records</span>
+      </article>
+      <article class="summary-card">
+        <span class="summary-icon courses-icon" aria-hidden="true">▤</span>
+        <div><p>Available courses</p><strong id="course-count">—</strong></div>
+        <span class="summary-note">active courses</span>
+      </article>
+      <article class="summary-card region-card">
+        <span class="summary-icon region-icon" aria-hidden="true">⌖</span>
+        <div><p>Sample data</p><strong>Volta Region</strong></div>
+        <span class="summary-note">fictional records</span>
+      </article>
+    </section>
+
+    <section class="records-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">DIRECTORY</p>
+          <h2>Student directory</h2>
+        </div>
+        <button class="primary-button" id="add-student-button" type="button"><span aria-hidden="true">＋</span> Add student</button>
+      </div>
+      <div class="toolbar">
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="search-input" type="search" placeholder="Search by name, ID, or program" aria-label="Search student records">
+        </label>
+        <span class="record-label" id="record-label">Loading records…</span>
+      </div>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">STUDENT</th>
+              <th scope="col">STUDENT ID</th>
+              <th scope="col">PROGRAM</th>
+              <th scope="col">REGISTERED COURSES</th>
+              <th scope="col">REGION</th>
+              <th scope="col"><span class="visually-hidden">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody id="student-rows">
+            <tr><td class="empty-state" colspan="6">Loading student records…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <footer>Volta Valley College <span>•</span> Student records are stored locally in SQLite.</footer>
+  </main>
+
+  <dialog id="student-dialog" aria-labelledby="dialog-title">
+    <form id="student-form">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">STUDENT PROFILE</p><h2 id="dialog-title">Add student</h2></div>
+        <button class="icon-button" id="close-dialog" type="button" aria-label="Close form">×</button>
+      </div>
+      <input id="student-id" type="hidden">
+      <div class="form-grid">
+        <label>Student number<input id="student-number" name="student_number" required maxlength="30" placeholder="e.g. VR-1004"></label>
+        <label>Program<input id="program" name="program" required maxlength="100" placeholder="e.g. Computer Science"></label>
+        <label>First name<input id="first-name" name="first_name" required maxlength="80"></label>
+        <label>Last name<input id="last-name" name="last_name" required maxlength="80"></label>
+        <label class="full-width">Email address<input id="email" name="email" type="email" required maxlength="160"></label>
+        <label class="full-width">Region<input id="region" name="region" value="Volta Region" required maxlength="80"></label>
+        <label class="full-width">Registered courses
+          <select id="courses" name="course_ids" multiple aria-describedby="courses-hint"></select>
+          <small id="courses-hint">Hold Ctrl (Windows) or Command (Mac) to select multiple courses.</small>
+        </label>
+      </div>
+      <p id="form-error" class="form-error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button class="secondary-button" id="cancel-dialog" type="button">Cancel</button>
+        <button class="primary-button" type="submit">Save record</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
