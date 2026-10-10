@@ -24,8 +24,6 @@ instance/*.db-wal
 instance/*.db-shm
 
 # Environment variables and secrets
-.env
-.env.local
 .env.*.local
 *.key
 *.pem
@@ -36,8 +34,9 @@ instance/*.db-shm
 
 # OS and IDE
 .DS_Store
-.vscode/
 .idea/
 *.swp
 *.swo
 *~
+config.bat
+node_modules

@@ -24,9 +24,7 @@ delete controls on each row update or remove that student's record. The
 database location can be changed with the `STUDENT_RECORDS_DATABASE`
 environment variable.
 
-**Software Demo Video:** _To be added after recording. The planned 4–5 minute
-video will demonstrate the running application, walk through its code, and
-show how the relational database is created._
+**Software Demo Video:** [Student Records Management System demonstration](https://vimeo.com/1234715208)
 
 # Relational Database
 
